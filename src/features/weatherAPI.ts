@@ -1,7 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const API_KEY = '6beda4838f1980561fc6fbaba7a10f3c'
+const API_KEY = process.env.REACT_APP_API_KEY
 
 // Define a service using a base URL and expected endpoints
 export const weatherApi = createApi({
