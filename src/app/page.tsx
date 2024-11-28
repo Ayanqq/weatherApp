@@ -1,8 +1,8 @@
 'use client'
 
-
 import { useState } from 'react';
-import WeatherForm from "@/components/WeatherForm";
+import WeatherForm from "@/src/components/WeatherForm";
+import WeatherInfo from "@/src/components/WeatherInfo";
 
 const WeatherPage: React.FC = () => {
   const [city, setCity] = useState<string>('');

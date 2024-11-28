@@ -1,3 +1,4 @@
+import {useGetWeatherQuery} from "@/src/features/weatherAPI";
 
 interface WeatherInfoProps {
     city: string;
