@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import {FormEvent, useState} from 'react';
 
-interface WeatherFormProps {
+type WeatherFormProps = {
     onSearch: (city: string) => void;
 }
 
-const WeatherForm: React.FC<WeatherFormProps> = ({ onSearch }) => {
+const WeatherForm = ({onSearch}: WeatherFormProps) => {
     const [city, setCity] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onSearch(city);
     };
