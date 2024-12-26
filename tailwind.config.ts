@@ -16,6 +16,9 @@ export default {
             },
             padding: {
                 'global': '80px 64px'
+            },
+            dropShadow: {
+                custom: '10px 10px 4px rgba(0, 0, 0, 0.5)'
             }
         },
     },
