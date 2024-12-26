@@ -13,7 +13,7 @@ const WeatherPage = () => {
     };
 
     return (
-        <div className={'weather-page'}>
+        <div className={''}>
             <div className='header'>
                 <div>
                     Light Mode
@@ -21,18 +21,18 @@ const WeatherPage = () => {
                 <WeatherForm onSearch={handleSearch}/>
             </div>
             <div className='main-info'>
-                <div className='first-line-weather'>
-                    <Container>
+                <div className='flex gap-[55px] mb-[50px] mt-[50px]'>
+                    <Container minWidth={'510px'}>
                         <p>Athens</p>
                         <p>09:03</p>
                         <span>Thursday, 31 Aug</span>
                     </Container>
-                    <Container>
+                    <Container minWidth={'780px'}>
                         <p>24 C</p>
                     </Container>
                 </div>
-                <div className={'second-line-weather'}>
-                    <Container>
+                <div className={'flex gap-[55px]'}>
+                    <Container minWidth={'415px'}>
                         <p>5 Days Forecast:</p>
                         <ul>
                             <li>20 C</li>
@@ -40,15 +40,21 @@ const WeatherPage = () => {
                             <li>20 C</li>
                         </ul>
                     </Container>
-                    <div className={'hourly-forecast'}>
-
-                    </div>
+                    <Container minWidth={'870px'}>
+                        <div>
+                            <ul>
+                                Карточки некие
+                            </ul>
+                        </div>
+                    </Container>
                 </div>
             </div>
 
-            {city && <WeatherInfo city={city}/>}
+            {
+                city && <WeatherInfo city={city}/>
+            }
         </div>
-    );
+    )
 };
 
 export default WeatherPage;
