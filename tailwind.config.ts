@@ -9,8 +9,8 @@ export default {
     ],
     theme: {
         extend: {
-            fontWeight:{
-              poppins: 'Poppins',
+            fontWeight: {
+                poppins: 'Poppins',
             },
             colors: {
                 customGrey: '#D9D9D9',
@@ -23,6 +23,9 @@ export default {
             },
             backgroundImage: {
                 'custom-gradient': 'linear-gradient(117deg, rgba(255,255,255,1) 0%, rgba(16,142,226,1) 100%)',
+                'custom-gradient-hours-day': 'linear-gradient(150deg, rgba(248,133,8,1) 0%, rgba(255,255,255,0) 100%)',
+                'custom-gradient-hours-night': 'linear-gradient(150deg, rgba(68,61,100,1) 0%, rgba(101,130,198,0) 100%)',
+
             },
             width: {
                 'container': '100%'

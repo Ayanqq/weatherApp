@@ -7,7 +7,7 @@ type ContainerType = {
 
 export const Container = ({children, minWidth}: ContainerType) => {
     return (
-        <div style={{minWidth}} className={`flex items-center justify-center bg-customGrey h-[330px] rounded-[30px] drop-shadow-custom`}>
+        <div style={{minWidth}} className={`bg-customGrey min-h-[330px] rounded-[30px] drop-shadow-custom`}>
             {children}
         </div>
     );
