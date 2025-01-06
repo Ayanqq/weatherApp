@@ -11,6 +11,8 @@ type WeatherType = {
     wind: {
         speed: string;
     }
+    dt: number;
+    timezone: number;
 }
 
 export const weatherApi = createApi({

@@ -6,10 +6,10 @@ type WeatherFormProps = {
 
 const WeatherForm = ({onSearch}: WeatherFormProps) => {
     const [city, setCity] = useState('');
-
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onSearch(city);
+        localStorage.setItem('city', city);
     };
 
     return (
