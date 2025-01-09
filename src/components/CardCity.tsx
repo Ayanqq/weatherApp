@@ -7,21 +7,33 @@ type CardCityType = {
 
 export const CardCity = ({city}: CardCityType) => {
     const {data} = useGetWeatherQuery(city);
-    localStorage.setItem("city", 'Almaty' || data.name);
     const localTimezoneOffset = new Date().getTimezoneOffset() * 60
-    const localCityName = localStorage.getItem('city')
+    const localCityName = localStorage.getItem("cached name")
+    const localCityTime = localStorage.getItem("cached time")
+    const localCityDate = localStorage.getItem("cached date")
     let totalTime = null
+    let totalDate = null
 
     if (data) {
         const timestamp = data.dt;
         const timezoneOffset = data.timezone;
         const localTime = new Date((timestamp + timezoneOffset + localTimezoneOffset) * 1000)
 
+
         totalTime = localTime.toLocaleString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false,
         });
+
+        totalDate = localTime.toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+        })
+
+        localStorage.setItem("cached time", totalTime);
+        localStorage.setItem("cached date", totalDate);
     }
 
 
@@ -30,8 +42,8 @@ export const CardCity = ({city}: CardCityType) => {
             <div className={'flex flex-col text-center relative'}>
                 <span className={'text-[36px] font-bold text-[#3F3F3F]'}>{localCityName}</span>
                 <div className={'w-full gap-[2px]'}>
-                    <span className={'text-[96px] font-bold text-[#3F3F3F]'}>{totalTime}</span>
-                    <span className={'absolute top-[165px] right-[65px]'}>Thursday, 31 Aug</span>
+                    <span className={'text-[96px] font-bold text-[#3F3F3F]'}>{localCityTime}</span>
+                    <span className={'absolute top-[165px] right-[65px]'}>{localCityDate}</span>
                 </div>
             </div>
         </Container>
