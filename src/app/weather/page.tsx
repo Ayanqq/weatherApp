@@ -8,12 +8,9 @@ import {CardCity} from "@/src/components/CardCity";
 import {WeatherInfo} from "@/src/components/WeatherInfo";
 
 const WeatherPage = () => {
-    const [city, setCity] = useState<string>('');
+    // const [city, setCity] = useState<string>('');
     const [theme, setTheme] = useState<boolean>(true);
 
-    const handleSearch = (city: string) => {
-        setCity(city);
-    };
 
     const handleSwitcher = () => {
         setTheme(!theme)
@@ -26,11 +23,11 @@ const WeatherPage = () => {
                     <button onClick={handleSwitcher}>Switch button</button>
                     {theme ? 'light' : 'dark'}
                 </div>
-                <WeatherForm onSearch={handleSearch}/>
+                <WeatherForm/>
             </div>
             <div className='main-info'>
                 <div className='flex gap-[65px] mb-[50px] mt-[50px]'>
-                    <CardCity city={city}/>
+                    <CardCity />
                     <WeatherInfo/>
                 </div>
                 <div className={'flex gap-[70px]'}>

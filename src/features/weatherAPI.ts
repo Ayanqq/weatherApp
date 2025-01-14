@@ -23,7 +23,6 @@ export const weatherApi = createApi({
             query: (city) => `weather?q=${city}&appid=${API_KEY}`,
             transformResponse: (response: WeatherType) => {
                 localStorage.setItem('cached name', response.name)
-
                 return response
             }
         }),

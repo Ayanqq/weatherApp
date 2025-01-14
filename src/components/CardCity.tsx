@@ -1,11 +1,15 @@
 import {Container} from "@/src/components/Container";
 import {useGetWeatherQuery} from "@/src/features/weatherAPI";
+import {useSelector} from "react-redux";
+import {currentCity} from "@/src/features/weatherSlice";
 
-type CardCityType = {
-    city: string
-}
+// type CardCityType = {
+//     city: string
+// }
 
-export const CardCity = ({city}: CardCityType) => {
+export const CardCity = () => {
+    const city = useSelector(currentCity)
+
     const {data} = useGetWeatherQuery(city);
     const localTimezoneOffset = new Date().getTimezoneOffset() * 60
     const localCityName = localStorage.getItem("cached name")

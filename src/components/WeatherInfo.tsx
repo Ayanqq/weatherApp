@@ -9,6 +9,9 @@ import Pressure from "@/src/app/assets/day-data/pressure-white 1.png";
 import UVIndex from "@/src/app/assets/day-data/uv-white 1.png";
 
 export const WeatherInfo = () => {
+
+
+
     return (
         <Container minWidth={'780px'}>
             <div className={'flex justify-between px-[25px]'}>
