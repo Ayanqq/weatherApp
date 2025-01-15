@@ -1,22 +1,23 @@
-import {FormEvent} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {currentCity, setCity} from "@/src/features/weatherSlice";
+import {ChangeEvent, FormEvent, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {setCity} from "@/src/features/weatherSlice";
 
-// type WeatherFormProps = {
-//     onSearch: (city: string) => void;
-// }
 
 const WeatherForm = () => {
 
-    const localCity = useSelector(currentCity)
+    // const localCity = useSelector(currentCity)
+    const [localCity, setLocalCity] = useState<string>("");
     const dispatch = useDispatch();
 
-    console.log('Local city from redux',localCity)
+    console.log('Local city from redux', localCity)
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setLocalCity(e.currentTarget.value)
+    }
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(setCity(localCity))
-        // onSearch(localCity);
         localStorage.setItem('city', localCity);
     };
 
@@ -25,7 +26,7 @@ const WeatherForm = () => {
             <input
                 type="text"
                 value={localCity}
-                onChange={(e) => dispatch(setCity(e.target.value))}
+                onChange={onChangeHandler}
                 placeholder="Введите название города"
             />
             <button type="submit">Поиск</button>
