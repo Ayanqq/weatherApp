@@ -7,9 +7,20 @@ import Humidity from "@/src/app/assets/day-data/humidity 1.png";
 import Wind from "@/src/app/assets/day-data/wind 1.png";
 import Pressure from "@/src/app/assets/day-data/pressure-white 1.png";
 import UVIndex from "@/src/app/assets/day-data/uv-white 1.png";
+import {useSelector} from "react-redux";
+import {currentCity} from "@/src/features/weatherSlice";
+import {useGetWeatherQuery} from "@/src/features/weatherAPI";
 
 export const WeatherInfo = () => {
+    const city = useSelector(currentCity)
+    const kelvin = 273.15
+    const {data} = useGetWeatherQuery(city);
+    let tempToCelsius = null;
+    let tempFeels = null
 
+    if (data) {
+        tempToCelsius = (Number(data.main.temp) - kelvin).toFixed(1);
+    }
 
 
     return (
@@ -17,7 +28,7 @@ export const WeatherInfo = () => {
             <div className={'flex justify-between px-[25px]'}>
                 <div className={'flex flex-col gap-[25px]'}>
                     <div className={'flex flex-col justify-center'}>
-                        <span className={'font-bold text-[80px]'}>24°C</span>
+                        <span className={'font-bold text-[80px]'}>{tempToCelsius}°C</span>
                         <span>Feels like: <span className={'text-[32px] font-medium'}>22°C</span></span>
                     </div>
                     <div className={'flex flex-col gap-[10px]'}>
