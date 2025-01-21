@@ -4,12 +4,21 @@ const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY
 
 type WeatherType = {
     name: string;
+    weather: {
+        main: string;
+    },
     main: {
         temp: string;
-        humidity: string
+        humidity: string;
+        pressure: string;
+        feels_like: string;
     }
     wind: {
         speed: string;
+    }
+    sys: {
+        sunrise: number;
+        sunset: number
     }
     dt: number;
     timezone: number;

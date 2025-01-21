@@ -2,6 +2,7 @@ import {Container} from "@/src/components/Container";
 import {useGetWeatherQuery} from "@/src/features/weatherAPI";
 import {useSelector} from "react-redux";
 import {currentCity} from "@/src/features/weatherSlice";
+import {formatTime} from "@/src/utils/timeUtils";
 
 // type CardCityType = {
 //     city: string
@@ -24,11 +25,7 @@ export const CardCity = () => {
         const localTime = new Date((timestamp + timezoneOffset + localTimezoneOffset) * 1000)
 
 
-        totalTime = localTime.toLocaleString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false,
-        });
+        totalTime = formatTime(localTime)
 
         totalDate = localTime.toLocaleDateString('en-US', {
             weekday: 'long',

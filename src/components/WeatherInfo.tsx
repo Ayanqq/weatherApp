@@ -10,16 +10,39 @@ import UVIndex from "@/src/app/assets/day-data/uv-white 1.png";
 import {useSelector} from "react-redux";
 import {currentCity} from "@/src/features/weatherSlice";
 import {useGetWeatherQuery} from "@/src/features/weatherAPI";
+import {formatTime} from "@/src/utils/timeUtils";
 
 export const WeatherInfo = () => {
     const city = useSelector(currentCity)
     const kelvin = 273.15
     const {data} = useGetWeatherQuery(city);
+    const localTimezoneOffset = new Date().getTimezoneOffset() * 60
     let tempToCelsius = null;
     let tempFeels = null
+    let sunrise = null;
+    let sunset = null
+    let humidity = null
+    let pressure = null
+    let windSpeed = null
 
     if (data) {
         tempToCelsius = (Number(data.main.temp) - kelvin).toFixed(1);
+        tempFeels = (Number(data.main.feels_like) - kelvin).toFixed(1);
+        humidity = data.main.humidity;
+        pressure = data.main.pressure;
+        windSpeed = data.wind.speed
+
+
+        const timezoneOffset = data.timezone;
+
+        const sunriseTimeData = data.sys.sunrise;
+        const sunriseTime = new Date((sunriseTimeData + timezoneOffset + localTimezoneOffset) * 1000)
+
+        const sunsetTimeData = data.sys.sunset;
+        const sunsetTime = new Date((sunsetTimeData + timezoneOffset + localTimezoneOffset) * 1000)
+
+        sunrise = formatTime(sunriseTime)
+        sunset = formatTime(sunsetTime)
     }
 
 
@@ -29,21 +52,21 @@ export const WeatherInfo = () => {
                 <div className={'flex flex-col gap-[25px]'}>
                     <div className={'flex flex-col justify-center'}>
                         <span className={'font-bold text-[80px]'}>{tempToCelsius}°C</span>
-                        <span>Feels like: <span className={'text-[32px] font-medium'}>22°C</span></span>
+                        <span>Feels like: <span className={'text-[32px] font-medium'}>{tempFeels}°C</span></span>
                     </div>
                     <div className={'flex flex-col gap-[10px]'}>
                         <div className={'flex'}>
                             <Image src={Sunrise} alt={'sunrise-icon'}/>
                             <div className={'flex flex-col text-left ml-[10px]'}>
                                 <span>Sunrise</span>
-                                <span>06:37 AM</span>
+                                <span>{sunrise}</span>
                             </div>
                         </div>
                         <div className={'flex'}>
                             <Image src={Sunset} alt={'sunset-icon'}/>
                             <div className={'flex flex-col text-left ml-[10px]'}>
                                 <span>Sunset</span>
-                                <span>06:37 AM</span>
+                                <span>{sunset}</span>
                             </div>
                         </div>
                     </div>
@@ -55,17 +78,17 @@ export const WeatherInfo = () => {
                 <div className={'max-w-md mx-auto flex flex-wrap justify-center gap-[5px]'}>
                     <div className={'flex flex-col items-center text-center w-[calc(50%-10px)]'}>
                         <Image src={Humidity} alt={'humidity'}/>
-                        <span>42%</span>
+                        <span>{humidity}%</span>
                         <span>Humidity</span>
                     </div>
                     <div className={'flex flex-col items-center text-center w-[calc(50%-10px)]'}>
                         <Image src={Wind} alt={'wind'}/>
-                        <span>2km/h</span>
+                        <span>{windSpeed}</span>
                         <span>Wind Speed</span>
                     </div>
                     <div className={'flex flex-col items-center text-center w-[calc(50%-10px)]'}>
                         <Image src={Pressure} alt={'pressure'}/>
-                        <span>997hPa</span>
+                        <span>{pressure} hPa</span>
                         <span>Pressure</span>
                     </div>
                     <div className={'flex flex-col items-center text-center w-[calc(50%-10px)]'}>
