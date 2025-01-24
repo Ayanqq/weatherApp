@@ -22,12 +22,13 @@ const WeatherForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={'flex'}>
             <input
                 type="text"
                 value={localCity}
                 onChange={onChangeHandler}
                 placeholder="Введите название города"
+                className={'w-full gap-[2px]'}
             />
             <button type="submit">Поиск</button>
         </form>
