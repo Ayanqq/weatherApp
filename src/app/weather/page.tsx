@@ -35,9 +35,6 @@ const WeatherPage = () => {
                     <HourlyForecast/>
                 </div>
             </div>
-            {/*{*/}
-            {/*    city && <WeatherInfo city={city}/>*/}
-            {/*}*/}
         </div>
     )
 };
